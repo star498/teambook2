@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %} Document {% endblock %}</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}" media="screen">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}" media="screen">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" media="screen">
+     
+<!-- Optional theme -->
+	<link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap-theme.min.css')}}" media="screen">
+
+<!-- Latest compiled and minified JavaScript -->
+	<link rel="stylesheet" href="{{url_for('static', filename='js/bootstrap.min.js')}}" media="screen">
+  
+
+</head>
+<body>
+{% block header %}
+<h3>ESte es el bloque del header</h3>
+{% endblock %}	
+
+{% block content %}
+<h3>ESte contenido </h3>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+</body>
+</html>

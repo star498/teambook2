@@ -1,0 +1,226 @@
+{% extends 'jugador/base.html' %}
+{% block header %}
+<div class="container prueeba">
+
+	<h1 style="margin-right: 25px" ><strong>Teambook</strong></h1>
+
+</div>
+{% endblock%}
+{% block content %}
+
+<div class="content">
+	<div class="row" >
+
+		<div class="col-sm-12">
+			<div class="col-sm-3">
+				<div class="panel panel-default">
+				 	 <div class="panel-body">
+				 	 	  <form method="GET">
+				 	 	 	<center>
+				 	 	 	<h3><strong>Crear una cuenta</strong></h3>
+				 	 	 	  
+							  
+							  	<div class="form-group">
+							    <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Nombre ">
+							    </div>
+							   <div class="form-group">
+							    <input id="apellido" type="text" class="form-control" name="apellido" placeholder="Apellido">
+							   </div>
+							   <div class="input-group">
+							   	 <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+							    <input id="celular" type="text" class="form-control" name="celular" placeholder="Numero" maxlength="9">
+							   </div>
+							    <div class="input-group">
+							     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							    <input id="fnacimiento" type="Date" class="form-control" name="fnacimiento" placeholder="Nacimiento">
+							   </div>
+							   <div class="input-group" >
+							  	<input type="radio" id="femenino"
+							       name="sexo" value="femenino" checked>
+							      <label style="padding-right: 10px" for="femenino">Mujer</label>
+
+							      <input type="radio" id="masculino"
+							       name="sexo" value="masculino">
+							      <label for="masculino">Hombre</label>
+							  </div>
+							  <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							    <input id="usuario" type="text" class="form-control" name="usuario" placeholder="Usuario">
+							  </div>
+							  
+							  <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							    <input id="clave" type="password" class="form-control" name="clave" placeholder="Contraseña">
+							  </div>
+							  <div class="form-group" style="text-align: right;">
+							     <button  type="button" id="btnregistrar"  onclick="registrar()" class="btn btn-success "><strong>Registrate</strong></button> 
+							  </div>
+							  </center>
+							  
+						 </form> 
+				 	 </div>
+				</div>
+			</div>	
+
+	
+			<div class="col-sm-6">
+				<center>
+				<div class="panel panel-default">
+				 	 <div class="panel-body">
+				 	 	<h3><strong>Bienvenidos a Teambook</strong></h3><br>
+				 	 	<p>Te damos la bienvenida a teambook una red social enfocada a encuentros deportivos en donde puedes monitoriar tus logros deportivos,crear encuentros y unirte a otros, seguir a tu jugador favorito, ver sus momentos, conversar con tus amigos, crear enfrentamientos entre equipos, calificar a los jugadores y mucho más. </p>
+				 	 	<p>Este es tu momento de conocer nuevos amigos. </p><br>
+				 	 	<img src="{{url_for('static', filename='images/ganadores.png')}}" width="200" height="150">
+				 	 </div>
+				</div>
+				</center>
+			</div>
+			<div class="col-sm-3">
+				
+					<div class="panel panel-default">
+					
+					  <div class="panel-body">
+					  	<center>		<h3><strong>Inicia Sesión</strong></h3></center>
+					  	<div class="form-group">
+					  		<div class="input-group">
+					  			<span  class="input-group-addon"><img src="{{url_for('static', filename='images/facebook.png')}}"></span>
+					  			<button type="button" style="padding: 5px" class="form-control">Inicia sesióń con Facebook</button> 
+					  		</div>
+							     
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+					  			<span  class="input-group-addon"><img src="{{url_for('static', filename='images/gmail.png')}}"></span>
+					  			<button type="button" style="padding: 5px" class="form-control">Inicia sesióń con Gmail</button> 
+					  		</div>
+						</div>
+					  	 <div class="form-group">
+						  	<label  >Ingrese usuario o celular </label>
+						  	<div class="input-group">
+						  		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							    <input id="iusuario" type="text" class="form-control" name="iusuario" placeholder="Usuario">
+						  	</div>
+						  </div>
+
+						
+						  <div class="form-group">
+						  		<label  >Contraseña </label>
+							  <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							    <input id="iclave" type="password" class="form-control" name="iclave" placeholder="Contraseña">
+							  </div>
+							 <label style="font-size: 10px;" >¿Se olvidó la contraseña? </label>
+						  </div>
+						  <div class="form-group" style="text-align:right">
+					
+							<button  type="button" class="btn btn-primary"><strong>Iniciar Sesión</strong></button> 
+						  </div>
+						 
+					  </div>
+					</div>
+				
+			</div>
+			
+		</div>
+	</div>
+</div>
+ 
+	<style type="text/css" media="screen">
+
+		.prueeba{
+			
+			background-color: #3f7bdb;
+			-webkit-background-size: cover;
+		    -moz-background-size: cover;
+		    -o-background-size: cover;
+		    background-size: cover;
+		    height: auto;
+		    width: 100% ;
+  			margin: 0;
+  			text-align: right;
+		    color:white;
+
+		 	
+		}
+		
+		.content{
+			margin-top: 10px;
+		}
+		body {
+			background-color: #e9ebee;
+		}
+	
+		#divfooter{
+			
+			background-color: #3f7bdb;
+			color:white;
+			font-family: sans-serif;
+			text-align: center;
+			-webkit-background-size: cover;
+		    -moz-background-size: cover;
+		    -o-background-size: cover;
+		    background-size: cover;
+		    height: 100%;
+		    width: 100% ;
+  			margin: 0;
+		}
+		form div{
+			margin:8px;
+		}
+	</style>
+    <script type="text/javascript">
+
+    	function registrar(){
+        	var nombre= $('#nombre').val();
+        	var apellido= $('#apellido').val();
+        	var celular= $('#celular').val();
+        	var fnacimiento= $('#fnacimiento').val();
+        	var sexo= $('input[name="sexo"]:checked').val();
+        	var usuario= $('#usuario').val();
+        	var clave= $('#clave').val();
+
+        	console.log("nacimiento:"+ fnacimiento+ " sexo " + sexo);
+
+        	$.ajax({
+        	 	type: "GET",
+		        url: 'create',
+		        data: {
+		          'nombre': nombre,
+		          'apellido': apellido,
+		          'celular': celular,
+		          'fnacimiento': fnacimiento,
+		          'sexo': sexo,
+		          'usuario': usuario,
+		          'clave': clave
+
+		        },
+
+		        dataType: 'json',
+		        success: function (data) {
+		     
+			        alert("inicio sesión");
+			         
+		        }
+		    });
+        }
+        $(document).ready(function() {
+
+
+
+        	
+
+
+
+        //alert("hola");// JQuery code to be added in here.
+
+        });
+    </script>
+
+{% endblock %}
+{% block footer %}
+<div class="container" id="divfooter">
+	<h5>Estrella Barrientos Mogollon Production <br>barrientos.sarit04@gmail.com<br>Teambook ©2018</h5>
+	
+
+</div>
+{% endblock %}
