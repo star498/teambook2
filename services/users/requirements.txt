@@ -2,7 +2,10 @@ Flask==1.0.2
 Flask-SQLAlchemy==2.3.2
 psycopg2==2.7.4
 Flask-Testing==0.6.2
+<<<<<<< HEAD
 gunicorn==19.9.0
 coverage==4.5.1
 flake8==3.5.0
+=======
+>>>>>>> 2abc7d3422678745f55e81dd56c9a9f8680e3493
 
