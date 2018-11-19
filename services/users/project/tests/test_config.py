@@ -49,8 +49,4 @@ class TestProductionConfig(TestCase):
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
-    unittest.main()
-=======
-    unittest.main()
->>>>>>> 2abc7d3422678745f55e81dd56c9a9f8680e3493
+unittest.main()

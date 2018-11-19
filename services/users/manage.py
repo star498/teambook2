@@ -3,9 +3,8 @@ import unittest
 from flask.cli import FlaskGroup
 
 from project import create_app, db
-
 from project.api.models import User
-<<<<<<< HEAD
+
 import coverage
 
 #configuracion de coverage
@@ -19,15 +18,38 @@ COV= coverage.coverage(
 
     )
 COV.start()
-=======
->>>>>>> 2abc7d3422678745f55e81dd56c9a9f8680e3493
 
 app = create_app()
 cli = FlaskGroup(create_app=create_app)
 
 @cli.command()
-<<<<<<< HEAD
+def recreate_db():
+    db.drop_all()
+    db.create_all()
+    db.session.commit()
+
+
+@cli.command()
+def test():
+    """Ejecuta las pruebas sin cobertura de codigo"""
+    tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
+    result = unittest.TextTestRunner(verbosity=2).run(tests)
+    if result.wasSuccessful():
+        return 0
+    return 1
+
+
+@cli.command()
+def seed_db():
+
+    db.session.add(User(username='estrella', email='estrellabarrientos@upeu.edu.pe'))
+    db.session.add(User(username='igor', email='igorchipana@upeu.edu.pe'))
+    db.session.commit()
+
+
+@cli.command()
 def cov():
+
     tests= unittest.TestLoader().discover('project/tests')
     result= unittest.TextTestRunner(verbosity=2).run(tests)
     if result.wasSuccessful():
@@ -40,30 +62,6 @@ def cov():
         return 0
     return 1
 
-
-@cli.command()
-=======
->>>>>>> 2abc7d3422678745f55e81dd56c9a9f8680e3493
-def seed_db():
-
-    db.session.add(User(username='estrella', email='estrellabarrientos@upeu.edu.pe'))
-    db.session.add(User(username='igor', email='igorchipana@upeu.edu.pe'))
-    db.session.commit()
-
-@cli.command()
-def recreate_db():
-	db.drop_all()
-	db.create_all()
-	db.session.commit()
-
-@cli.command()
-def test():
-    """Ejecuta las pruebas sin cobertura de codigo"""
-    tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
-    result = unittest.TextTestRunner(verbosity=2).run(tests)
-    if result.wasSuccessful():
-        return 0
-    return 1
 
 if __name__=='__main__':
     cli()
