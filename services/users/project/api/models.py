@@ -1,16 +1,14 @@
-from sqlalchemy.sql import func
-
 from project import db
+
 
 class User(db.Model):
 
-    __tablename__ =  'users'
+    __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
-
 
     def to_json(self):
         return {
@@ -23,7 +21,6 @@ class User(db.Model):
     def __init__(self, username, email):
         self.username = username
         self.email = email
-
 
 
 class Jugador(db.Model):
@@ -57,33 +54,33 @@ class Jugador(db.Model):
             'tipocuenta': self.tipocuenta
         }
 
-    def __init__(self, nombre, apellido, usuario, clave, celular, fechanacimiento, tipocuenta):
-        self.nombre= nombre
+    def __init__(self,
+                 nombre,
+                 apellido,
+                 usuario,
+                 clave,
+                 celular,
+                 fechanacimiento,
+                 tipocuenta
+                 ):
+        self.nombre = nombre
         self.apellido = apellido
-        self.usuario= usuario
-        self.clave= clave
-        self.celular= celular
-        self.fechanacimiento= fechanacimiento
-        self.tipocuenta= tipocuenta
-
-    def __init__(self, nombre, apellido, email , tipocuenta, celular):
-        self.nombre= nombre
-        self.apellido = apellido
-        self.email=email
-        self.tipocuenta= tipocuenta
+        self.usuario = usuario
+        self.clave = clave
         self.celular = celular
+        self.fechanacimiento = fechanacimiento
+        self.tipocuenta = tipocuenta
 
 
 class Cuenta(db.Model):
 
-    __tablename__ =  'TBK_CUENTA'
+    __tablename__ = 'TBK_CUENTA'
 
     id_cuenta = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    usuario= db.Column(db.String(128), nullable=False)
+    usuario = db.Column(db.String(128), nullable=False)
     clave = db.Column(db.String(128), nullable=False)
     estado = db.Column(db.Boolean(), default=True, nullable=False)
     tipo_cuenta = db.Column(db.Integer,  nullable=False)
-
 
     def to_json(self):
         return {
@@ -91,6 +88,5 @@ class Cuenta(db.Model):
             'usuario': self.usuario,
             'clave': self.clave,
             'estado': self.estado,
-            'tipo_cuenta': self.tipo_cuenta        }
-
-
+            'tipo_cuenta': self.tipo_cuenta
+            }
