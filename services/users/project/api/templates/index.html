@@ -1,55 +1,148 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Microservicios con flask y docker</title>
-    <!-- meta -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!-- styles -->
-    <link
-      href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"
-      rel="stylesheet"
-    >
-    {% block css %}{% endblock %}
-  </head>
-  <body>
-    <div class="container">
-      <div class="column is-one-third">
-        <br>
-        <h1 class="title">Todos los usuarios</h1>
-        <hr><br>
-        <form action="/" method="POST">
-          <div class="field">
-            <input
-              name="username" class="input"
-              type="text" placeholder="Enter a username" required>
-          </div>
-          <div class="field">
-            <input
-              name="email" class="input"
-              type="email" placeholder="Entre una dirección email" required>
-          </div>
-          <input
-            type="submit" class="button is-primary is-fullwidth"
-            value="Submit">
-        </form>
-        <br>
-        <hr>
-          {% if users %}
-            <ol>
-              {% for user in users %}
-                <li>{{user.username}}</li>
-              {% endfor %}
-            </ol>
-          {% else %}
-            <p>No users!</p>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-    </script>
-    {% block js %}{% endblock %}
-  </body>
-</html>
+{% extends 'base.html' %}
+{% block header %}
+<div class="container cabecera">
+
+	<h1><strong>Teambook</strong></h1>
+
+</div>
+{% endblock%}
+{% block content %}
+	<div class="row" >
+			<div class="col-md-3">
+				<div class="panel panel-default">
+				 	 <div class="panel-body">
+				 	 	  <form  action="/crearcuenta" method="POST">
+				 	 	 	<center>
+				 	 	 	
+				 	 	 	<h3><strong>Crear una cuenta</strong></h3>
+				 	 	 	  
+							  	<div class="form-group">
+							    <input id="nombre" type="text" class="form-control" name="nombre" placeholder="Nombre " required>
+							    </div>
+							   <div class="form-group">
+							    <input id="apellido" type="text" class="form-control" name="apellido" placeholder="Apellido" required>
+							   </div>
+							   <div class="form-group">
+							    <input id="email" type="email" class="form-control" name="email" placeholder="Correo electronico" required>
+							   </div>
+							   <div class="form-group">
+							   	<div class="input-group">
+							   	 <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+							    <input id="celular" type="text" class="form-control" name="celular" placeholder="Numero" maxlength="9" required>
+							   </div>
+							   </div>
+
+							   <div class="form-group">
+							   	  <div class="input-group">
+							     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+							    <input id="fnacimiento" type="Date" class="form-control" name="fnacimiento" placeholder="Nacimiento" required>
+							   </div>
+							   </div>
+							  <div class="form-group">
+							  	<div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							    <input id="usuario" type="text" class="form-control" name="usuario" placeholder="Usuario" required>
+							  </div>
+							  </div>
+							  
+							  <div class="form-group">
+							  	 <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							    <input id="clave" type="password" class="form-control" name="clave" placeholder="Contraseña" required>
+							  </div>
+							  </div>
+							  <div class="form-group">
+							  	 <div class="input-group" >
+							  	<input type="radio" id="femenino"
+							       name="sexo" value="1" checked>
+							      <label style="padding-right: 10px" for="femenino">Mujer</label>
+
+							      <input type="radio" id="masculino"
+							       name="sexo" value="2">
+							      <label for="masculino">Hombre</label>
+							  </div>
+							  </div>
+							 
+							  <div class="form-group">
+							   <input  type="submit" value="Registrar" class="btn btn-success "> 
+							  <!--  <button type="button" onclick="registrar()">ffffff</button>-->
+							  </div>
+							  </center>
+							  
+						
+				 	 </div>
+				 	 	</form>
+				</div>
+			</div>	
+
+	
+			<div class="col-md-6">
+				<center>
+				<div class="panel panel-default">
+				 	 <div class="panel-body">
+				 	 	<h3><strong>Bienvenidos a Teambook</strong></h3><br>
+				 	 	<p>Te damos la bienvenida a teambook una red social enfocada a encuentros deportivos en donde puedes monitoriar tus logros deportivos,crear encuentros y unirte a otros, seguir a tu jugador favorito, ver sus momentos, conversar con tus amigos, crear enfrentamientos entre equipos, calificar a los jugadores y mucho más. </p>
+				 	 	<p>Este es tu momento de conocer nuevos amigos. </p><br>
+				 	 	<img src="https://png2.kisspng.com/20180308/rse/kisspng-clip-art-ink-running-man-5aa0d2fb767e00.6159710815204892114854.png" width="200" height="200">
+				 	 </div>
+				</div>
+				</center>
+			</div>
+			<div class="col-md-3">
+				
+					<div class="panel panel-default">
+					
+					  <div class="panel-body">
+					  	
+					  	<center>		<h3><strong>Inicia Sesión</strong></h3></center>
+					  	<div class="form-group">
+					  		<div class="input-group">
+					  			<span  class="input-group-addon"><img src="images/facebook.png"></span>
+					  			<button type="button" style="padding: 5px" class="form-control">Inicia sesióń con Facebook</button> 
+					  		</div>
+							     
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+					  			<span  class="input-group-addon"><img src="images/gmail.png"></span>
+					  			<button type="button" style="padding: 5px" class="form-control">Inicia sesióń con Gmail</button> 
+					  		</div>
+						</div>
+					  	 <div class="form-group">
+						  	<label  >Ingrese usuario </label>
+						  	<div class="input-group">
+						  		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							    <input id="user" type="text" class="form-control" name="user" placeholder="Usuario">
+						  	</div>
+						  </div>
+
+						
+						  <div class="form-group">
+						  		<label  >Contraseña </label>
+							  <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							    <input id="pass" type="password" class="form-control" name="pass" placeholder="Contraseña">
+							  </div>
+							 <label style="font-size: 10px;" >¿Se olvidó la contraseña? </label>
+						  </div>
+						  <div class="form-group" >
+							<input type="submit"  class="btn btn-primary" value="Iniciar Sesión"> 
+						  </div>
+						 
+					  </div>
+				
+					</div>
+				
+			</div>
+			
+		</div>
+
+{% endblock %}
+{% block footer %}
+<div class="container footer">
+	<center><label>Estrella Barrientos Mogollon Production <br>barrientos.sarit04@gmail.com<br>Teambook ©2018</label>
+	</center>
+	
+
+</div>
+{% endblock %}

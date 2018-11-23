@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block header %}
+<div class="panel panel-default">
+        <img src="images/login.png" alt=""><label> Usuario conectado : {{ usuario.usuario }}</label>
+</div>
+     
+{% endblock %}
+{% block content %}
+<div class="row" >
+  <div class="col-lg-5">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Perfil </div>
+      <div class="panel-body">
+         <img src="images/perfil.png"  class="col-sm-6">
+          <div class="col-sm-6">
+            <li><label >Nombre:  </label>{{participante.nombre}}</li>
+                <li><label >Apellido:  </label>{{participante.apellido}}</li>
+                <li><label >Cumpleaños:  </label> {{participante.fechanacimiento}}</li>
+                <li><label >Nivel de juego:  </label> {{participante.nivel}}</li>
+                <li><label >Celular:  </label> {{participante.celular}}</li>
+                <li><label >Gustos:  </label>Gusto aqui</li>
+          </div>
+
+        </div>
+     
+      </div>
+    </div>
+  <div class="col-lg-7">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h5 class="title">Amigos que tiene Teambook</h5></div>
+      <div class="panel-body">
+         {% if participantes %}
+         <table style="width:100%">
+         {% for p in participantes %}
+         <tr>
+          <td ROWSPAN="4">
+          <img src="images/perfil.png" width="80" height="80" >
+          </td>
+          <td>
+          {{p.nombre}} {{p.apellido}}
+          </td>
+          </tr>
+          <tr>
+          <td>
+          {{p.celular}}
+          </td>
+          </tr>
+         <tr>
+          <td>
+          {{p.nivel}}
+          </td>
+        </tr>
+         <tr>
+          <td>
+         {{p.email}}
+          </td>
+        </tr>
+          {% endfor %}
+        </table> 
+          {% else %}
+            <p>No users!</p>
+         {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+          
+{% endblock %}
+{% block footer %}
+{% endblock %}
+     

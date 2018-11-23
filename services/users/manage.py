@@ -3,7 +3,7 @@ import unittest
 from flask.cli import FlaskGroup
 
 from project import create_app, db
-from project.api.models import User
+from project.api.models import Participante
 
 import coverage
 
@@ -42,10 +42,8 @@ def test():
 @cli.command()
 def seed_db():
 
-    db.session.add(User(username='estrella', email='estrellabarrientos@upeu.edu.pe'))
-    db.session.add(User(username='igor', email='igorchipana@upeu.edu.pe'))
+    db.session.add(Participante(nombre='estrella', apellido='barrientos', email='estrella@upeu.edu.pe', celular='celular', fechanacimiento='12-15-18' ,sexo=1))
     db.session.commit()
-
 
 @cli.command()
 def cov():

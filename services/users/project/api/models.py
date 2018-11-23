@@ -23,70 +23,75 @@ class User(db.Model):
         self.email = email
 
 
-class Jugador(db.Model):
+class Participante(db.Model):
 
-    __tablename__ = 'jugador'
+    __tablename__ = 'participante'
 
-    idjugador = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombre = db.Column(db.String(100), nullable=False)
     apellido = db.Column(db.String(100), nullable=False)
-    usuario = db.Column(db.String(20), nullable=True)
-    clave = db.Column(db.String(20), nullable=True)
     email = db.Column(db.String(128), nullable=True)
     celular = db.Column(db.String(9), nullable=True)
     nivel = db.Column(db.Integer, default=0, nullable=True)
-    fechanacimiento = db.Column(db.Date(), nullable=True)
-    estado = db.Column(db.Boolean(), default=True, nullable=False)
-    tipocuenta = db.Column(db.String(50), nullable=False)
+    fechanacimiento = db.Column(db.String(20), nullable=True)
+    estado = db.Column(db.Boolean(), default=True, nullable=True)
+    sexo = db.Column(db.Integer, default=0, nullable=True)
 
     def to_json(self):
         return {
-            'idjugador': self.idjugador,
-            'nombre': self.username,
+            'id': self.id,
+            'nombre': self.nombre,
             'apellido': self.apellido,
-            'usuario': self.usuario,
-            'clave': self.clave,
             'email': self.email,
             'celular': self.celular,
             'nivel': self.nivel,
-            'fnacimiento': self.fechanacimiento,
+            'fechanacimiento': self.fechanacimiento,
             'estado': self.estado,
-            'tipocuenta': self.tipocuenta
+            'sexo': self.sexo,
         }
 
     def __init__(self,
                  nombre,
                  apellido,
-                 usuario,
-                 clave,
+                 email,
                  celular,
                  fechanacimiento,
-                 tipocuenta
+                 sexo
                  ):
         self.nombre = nombre
         self.apellido = apellido
-        self.usuario = usuario
-        self.clave = clave
+        self.email = email
         self.celular = celular
         self.fechanacimiento = fechanacimiento
-        self.tipocuenta = tipocuenta
+        self.sexo = sexo
 
 
-class Cuenta(db.Model):
+class Usuario(db.Model):
 
-    __tablename__ = 'TBK_CUENTA'
+    __tablename__ = 'usuario'
 
-    id_cuenta = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     usuario = db.Column(db.String(128), nullable=False)
     clave = db.Column(db.String(128), nullable=False)
     estado = db.Column(db.Boolean(), default=True, nullable=False)
-    tipo_cuenta = db.Column(db.Integer,  nullable=False)
+    tipocuenta = db.Column(db.Integer, default=1, nullable=False)
+    idparticipante = db.Column(db.Integer, nullable=False)
 
     def to_json(self):
         return {
-            'id_cuenta': self.id_cuenta,
+            'id': self.id,
             'usuario': self.usuario,
             'clave': self.clave,
             'estado': self.estado,
-            'tipo_cuenta': self.tipo_cuenta
+            'tipocuenta': self.tipocuenta,
+            'idparticipante': self.idparticipante
             }
+
+    def __init__(self,
+                 usuario,
+                 clave,
+                 idparticipante
+                 ):
+        self.usuario = usuario
+        self.clave = clave
+        self.idparticipante = idparticipante

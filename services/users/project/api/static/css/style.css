@@ -1,0 +1,21 @@
+
+ .cabecera, .footer{
+ 	background-color:#216eed;
+ 	color: white;
+ 	padding: 8px;
+ 	width: 100%;
+ 	margin: 0;
+ }	
+ .row{
+ 	margin:5px;
+ }
+.button {
+	text-align:right;
+}
+.perfil label{
+
+	text-decoration: initial;
+	size: 20px;
+	margin: 4px;
+
+}
