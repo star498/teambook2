@@ -8,7 +8,7 @@
 {% endblock%}
 {% block content %}
 	<div class="row" >
-			<div class="col-md-3">
+			<div class="col-md-6">
 				<div class="panel panel-default">
 				 	 <div class="panel-body">
 				 	 	  <form  action="/crearcuenta" method="POST">
@@ -69,69 +69,76 @@
 							  </div>
 							  </center>
 							  
-						
+							</form>
 				 	 </div>
-				 	 	</form>
+				 	 
 				</div>
 			</div>	
 
 	
 			<div class="col-md-6">
-				<center>
-				<div class="panel panel-default">
-				 	 <div class="panel-body">
-				 	 	<h3><strong>Bienvenidos a Teambook</strong></h3><br>
-				 	 	<p>Te damos la bienvenida a teambook una red social enfocada a encuentros deportivos en donde puedes monitoriar tus logros deportivos,crear encuentros y unirte a otros, seguir a tu jugador favorito, ver sus momentos, conversar con tus amigos, crear enfrentamientos entre equipos, calificar a los jugadores y mucho más. </p>
-				 	 	<p>Este es tu momento de conocer nuevos amigos. </p><br>
-				 	 	<img src="https://png2.kisspng.com/20180308/rse/kisspng-clip-art-ink-running-man-5aa0d2fb767e00.6159710815204892114854.png" width="200" height="200">
-				 	 </div>
-				</div>
-				</center>
-			</div>
-			<div class="col-md-3">
-				
-					<div class="panel panel-default">
-					
-					  <div class="panel-body">
-					  	
-					  	<center>		<h3><strong>Inicia Sesión</strong></h3></center>
-					  	<div class="form-group">
-					  		<div class="input-group">
-					  			<span  class="input-group-addon"><img src="images/facebook.png"></span>
-					  			<button type="button" style="padding: 5px" class="form-control">Inicia sesióń con Facebook</button> 
-					  		</div>
-							     
-						</div>
-						<div class="form-group">
-							<div class="input-group">
-					  			<span  class="input-group-addon"><img src="images/gmail.png"></span>
-					  			<button type="button" style="padding: 5px" class="form-control">Inicia sesióń con Gmail</button> 
-					  		</div>
-						</div>
-					  	 <div class="form-group">
-						  	<label  >Ingrese usuario </label>
-						  	<div class="input-group">
-						  		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							    <input id="user" type="text" class="form-control" name="user" placeholder="Usuario">
-						  	</div>
-						  </div>
+                     
+				<!--<div class="panel panel-primary">
+			      <div class="panel-heading">Perfil </div>
+			      <div class="panel-body">
+			         <img src="images/perfil.png"  class="col-sm-6">
+			          <div class="col-sm-6">
+			          	    {% if participante %}
+			            <li><label >Nombre:  </label>{{participante.nombre}}</li>
+			                <li><label >Apellido:  </label>{{participante.apellido}}</li>
+			                <li><label >Cumpleaños:  </label> {{participante.fechanacimiento}}</li>
+			                <li><label >Nivel de juego:  </label> {{participante.nivel}}</li>
+			                <li><label >Celular:  </label> {{participante.celular}}</li>
+			                <li><label >Gustos:
+			                  </label>Gusto aqui</li>
+			                  {% else %}
+			                 <p>Ningun usuario!</p>
+			                 {% endif %}
+			           
 
-						
-						  <div class="form-group">
-						  		<label  >Contraseña </label>
-							  <div class="input-group">
-							    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-							    <input id="pass" type="password" class="form-control" name="pass" placeholder="Contraseña">
-							  </div>
-							 <label style="font-size: 10px;" >¿Se olvidó la contraseña? </label>
-						  </div>
-						  <div class="form-group" >
-							<input type="submit"  class="btn btn-primary" value="Iniciar Sesión"> 
-						  </div>
-						 
-					  </div>
-				
-					</div>
+			            
+			          </div>
+
+			      </div>
+			    </div>-->
+
+			    <div class="panel panel-primary">
+			      <div class="panel-heading"><h5 class="title">Amigos que tiene Teambook</h5></div>
+			      <div class="panel-body">
+			         {% if participantes %}
+			         <table style="width:100%">
+			         {% for p in participantes %}
+			         <tr>
+			          <td ROWSPAN="4">
+			          <img src="images/perfil.png" width="80" height="80" >
+			          </td>
+			          <td>
+			          {{p.nombre}} {{p.apellido}}
+			          </td>
+			          </tr>
+			          <tr>
+			          <td>
+			          {{p.celular}}
+			          </td>
+			          </tr>
+			         <tr>
+			          <td>
+			          {{p.nivel}}
+			          </td>
+			        </tr>
+			         <tr>
+			          <td>
+			         {{p.email}}
+			          </td>
+			        </tr>
+			          {% endfor %}
+			        </table> 
+			          {% else %}
+			            <p>No hay jugadores teambook!</p>
+			         {% endif %}
+
+			      </div>
+                 </div>
 				
 			</div>
 			

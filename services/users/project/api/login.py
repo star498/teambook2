@@ -104,15 +104,9 @@ def get_single_jugador(jugador_id):
 
 @login_blueprint.route('/crearcuenta', methods=['GET', 'POST'])
 def index():
-
-    response_object = {
-        'estado': 'fallo',
-        'mensaje': 'Datos no validos.'
-    }
+    
     if request.method == 'POST':
 
-        if not request.form['nombre']:
-            return jsonify(response_object), 400
         nombre = request.form['nombre']
         apellido = request.form['apellido']
         email = request.form['email']
@@ -121,38 +115,27 @@ def index():
         sexo = int(request.form['sexo'])
         usuario = request.form['usuario']
         clave = request.form['clave']
-
-        try:
-            participante = Participante.query.filter_by(email=email).first()
-            if not participante:
-                participantes = Participante.query.all()
-                jugadorcreate = Participante(
-                     nombre=nombre,
-                     apellido=apellido,
-                     email=email,
-                     celular=celular,
-                     fechanacimiento=fechanacimiento,
-                     sexo=sexo)
-                db.session.add(jugadorcreate)
-                db.session.commit()
-                idjugador = jugadorcreate.id
-                db.session.add(Usuario(
-                     usuario=usuario,
-                     clave=clave,
-                     idparticipante=idjugador))
-                db.session.commit()
-                usuariocreate = Usuario.query.filter_by(
-                    idparticipante=idjugador).first()
-                return render_template(
-                     'principal.html',
-                     usuario=usuariocreate, participante=jugadorcreate,
-                     participantes=participantes)
-            else:
-                response_object['mensaje'] = 'Disculpe. Este email ya existe.'
-                return jsonify(response_object), 400
-        except exc.IntegrityError as e:
-            db.session.rollback()
-            return jsonify(response_object), 400
+       
+        jugadorcreate = Participante(
+             nombre=nombre,
+             apellido=apellido,
+             email=email,
+             celular=celular,
+             fechanacimiento=fechanacimiento,
+             sexo=sexo)
+        db.session.add(jugadorcreate)
+        db.session.commit()
+        idjugador = jugadorcreate.id
+        db.session.add(Usuario(
+             usuario=usuario,
+             clave=clave,
+             idparticipante=idjugador))
+        db.session.commit()
+    
+    participantes = Participante.query.all()
+    return render_template(
+         'index.html',
+         participantes=participantes)
 
 
 @login_blueprint.route('/jugadores', methods=['GET'])

@@ -152,7 +152,7 @@ class TestJugadorService(BaseTestCase):
             self.assertIn('Datos no validos.', data['mensaje'])
             self.assertIn('fallo', data['estado'])
 
-    def test_all_users(self):
+    def test_all_jugadores(self):
         """Asegurarse de que todos los usuarios se comporte correctamente."""
         add_participante(
              'sol123',
@@ -170,3 +170,4 @@ class TestJugadorService(BaseTestCase):
             self.assertIn(
                 'sol@upeu.edu.pe', data['data']['jugadores'][0]['email'])
             self.assertIn('satisfactorio', data['estado'])
+
