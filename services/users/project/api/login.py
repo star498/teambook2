@@ -10,7 +10,7 @@ login_blueprint = Blueprint(
      static_url_path='', static_folder='./static')
 
 
-@login_blueprint.route('/users/ping', methods=['GET'])
+@login_blueprint.route('/users/login/ping', methods=['GET'])
 def ping_pong():
     return jsonify({
         'estado': 'satisfactorio',
@@ -46,9 +46,8 @@ def crearjugador():
     email = post_data.get('email')
     celular = post_data.get('celular')
     fechanacimiento = post_data.get('fechanacimiento')
-    sexo = post_data.get('sexo')
-    usuario =  post_data.get('usuario')
-    clave =  post_data.get('clave')
+    usuario = post_data.get('usuario')
+    clave = post_data.get('clave')
 
     try:
         jugador = Participante.query.filter_by(email=email).first()
@@ -58,15 +57,14 @@ def crearjugador():
              apellido=apellido,
              email=email,
              celular=celular,
-             fechanacimiento=fechanacimiento,
-             sexo=sexo)
+             fechanacimiento=fechanacimiento)
             db.session.add(jugadorcreate)
             db.session.commit()
             idjugador = jugadorcreate.id
             db.session.add(Usuario(
-                 usuario=usuario,
-                 clave=clave,
-                 idparticipante=idjugador))
+             usuario=usuario,
+             clave=clave,
+             idparticipante=idjugador))
             db.session.commit()
             response_object['estado'] = 'satisfactorio'
             response_object['mensaje'] = f'{email} ha sido agregado!'
@@ -102,7 +100,6 @@ def get_single_jugador(jugador_id):
                     'celular': jugador.celular,
                     'nivel': jugador.nivel,
                     'fechanacimiento': jugador.fechanacimiento,
-                    'sexo': jugador.sexo,
                     'estado': jugador.estado
                 }
             }
@@ -113,7 +110,7 @@ def get_single_jugador(jugador_id):
 
 @login_blueprint.route('/users/crearcuenta', methods=['GET', 'POST'])
 def index():
-    
+
     if request.method == 'POST':
 
         nombre = request.form['nombre']
@@ -121,17 +118,15 @@ def index():
         email = request.form['email']
         celular = request.form['celular']
         fechanacimiento = str(request.form['fechanacimiento'])
-        sexo = int(request.form['sexo'])
         usuario = request.form['usuario']
         clave = request.form['clave']
-       
+
         jugadorcreate = Participante(
              nombre=nombre,
              apellido=apellido,
              email=email,
              celular=celular,
-             fechanacimiento=fechanacimiento,
-             sexo=sexo)
+             fechanacimiento=fechanacimiento)
         db.session.add(jugadorcreate)
         db.session.commit()
         idjugador = jugadorcreate.id
@@ -140,7 +135,7 @@ def index():
              clave=clave,
              idparticipante=idjugador))
         db.session.commit()
-    
+
     participantes = Participante.query.all()
     return render_template(
          'index.html',

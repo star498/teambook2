@@ -10,174 +10,85 @@ exports[`AddJugador renders a snapshot properly 1`] = `
     </strong>
   </h3>
   <div
-    class="form-group"
+    className="field"
   >
     <input
-      class="form-control"
-      id="nombre"
+      className="input is-large"
       name="nombre"
-      placeholder="Nombre "
+      placeholder="Ingrese nombre"
       required={true}
       type="text"
     />
   </div>
   <div
-    class="form-group"
+    className="field"
   >
     <input
-      class="form-control"
-      id="apellido"
+      className="input is-large"
       name="apellido"
-      placeholder="Apellido"
+      placeholder="Ingrese apellido"
       required={true}
       type="text"
     />
   </div>
   <div
-    class="form-group"
+    className="field"
   >
     <input
-      class="form-control"
-      id="email"
+      className="input is-large"
       name="email"
-      placeholder="Correo electronico"
+      placeholder="Ingrese contraseña"
       required={true}
       type="email"
     />
   </div>
   <div
-    class="form-group"
-  >
-    <div
-      class="input-group"
-    >
-      <span
-        class="input-group-addon"
-      >
-        <i
-          class="glyphicon glyphicon-phone"
-        />
-      </span>
-      <input
-        class="form-control"
-        id="celular"
-        maxlength="9"
-        name="celular"
-        placeholder="Numero"
-        required={true}
-        type="text"
-      />
-    </div>
-  </div>
-  <div
-    class="form-group"
-  >
-    <div
-      class="input-group"
-    >
-      <span
-        class="input-group-addon"
-      >
-        <i
-          class="glyphicon glyphicon-calendar"
-        />
-      </span>
-      <input
-        class="form-control"
-        id="fechanacimiento"
-        name="fechanacimiento"
-        placeholder="Nacimiento"
-        required={true}
-        type="Date"
-      />
-    </div>
-  </div>
-  <div
-    class="form-group"
-  >
-    <div
-      class="input-group"
-    >
-      <span
-        class="input-group-addon"
-      >
-        <i
-          class="glyphicon glyphicon-user"
-        />
-      </span>
-      <input
-        class="form-control"
-        id="usuario"
-        name="usuario"
-        placeholder="Usuario"
-        required={true}
-        type="text"
-      />
-    </div>
-  </div>
-  <div
-    class="form-group"
-  >
-    <div
-      class="input-group"
-    >
-      <span
-        class="input-group-addon"
-      >
-        <i
-          class="glyphicon glyphicon-lock"
-        />
-      </span>
-      <input
-        class="form-control"
-        id="clave"
-        name="clave"
-        placeholder="Contraseña"
-        required={true}
-        type="password"
-      />
-    </div>
-  </div>
-  <div
-    class="form-group"
-  >
-    <div
-      class="input-group"
-    >
-      <input
-        checked={true}
-        id="femenino"
-        name="sexo"
-        type="radio"
-        value="1"
-      />
-      <label
-        for="femenino"
-      >
-        Mujer
-      </label>
-      <input
-        id="masculino"
-        name="sexo"
-        type="radio"
-        value="2"
-      />
-      <label
-        for="masculino"
-      >
-        Hombre
-      </label>
-    </div>
-  </div>
-  <div
-    class="form-group"
+    className="field"
   >
     <input
-      class="btn btn-success"
-      name="submit"
-      type="submit"
-      value="registrar"
+      className="input is-large"
+      name="celular"
+      placeholder="Celular"
+      required={true}
+      type="text"
     />
   </div>
+  <div
+    className="field"
+  >
+    <input
+      className="input is-large"
+      name="fechanacimiento"
+      required={true}
+      type="Date"
+    />
+  </div>
+  <div
+    className="field"
+  >
+    <input
+      className="input is-large"
+      name="usuario"
+      placeholder="Usuario"
+      required={true}
+      type="text"
+    />
+  </div>
+  <div
+    className="field"
+  >
+    <input
+      className="input is-large"
+      name="clave"
+      placeholder="Contraseña"
+      required={true}
+      type="text"
+    />
+  </div>
+  <input
+    className="button is-primary is-large is-fullwidth"
+    type="submit"
+    value="Submit"
+  />
 </form>
 `;

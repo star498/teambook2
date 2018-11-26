@@ -18,15 +18,10 @@ exports[`JugadoresList renders a snapshot properly 1`] = `
     <div
       class="col-sm-6"
     >
-      <a
-        class="h6 author-name"
-      >
+      <a>
         estrella
-        barrientos
       </a>
-      <div
-        class="birthday-date"
-      >
+      <div>
          
         <strong>
           strella@gmail.com
@@ -50,15 +45,10 @@ exports[`JugadoresList renders a snapshot properly 1`] = `
     <div
       class="col-sm-6"
     >
-      <a
-        class="h6 author-name"
-      >
+      <a>
         estrella
-        barrientos
       </a>
-      <div
-        class="birthday-date"
-      >
+      <div>
          
         <strong>
           strella@gmail.com

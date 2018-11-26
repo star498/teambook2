@@ -6,14 +6,13 @@ import json
 from project.tests.base import BaseTestCase
 
 
-def add_participante(nombre, apellido, email, celular, fechanacimiento, sexo):
+def add_participante(nombre, apellido, email, celular, fechanacimiento):
     participante = Participante(
          nombre=nombre,
          apellido=apellido,
          email=email,
          celular=celular,
-         fechanacimiento=fechanacimiento,
-         sexo=sexo)
+         fechanacimiento=fechanacimiento)
     db.session.add(participante)
     db.session.commit()
     return participante
@@ -41,7 +40,8 @@ class TestJugadorService(BaseTestCase):
                     'email': 'estrella@upeu.edu.pe',
                     'celular': 'celular',
                     'fechanacimiento': '12-15-18',
-                    'sexo': 1
+                    'usuario': 'estrella',
+                    'clave': '123'
                 }),
                 content_type='application/json',
             )
@@ -75,7 +75,7 @@ class TestJugadorService(BaseTestCase):
             'apellido',
             'sol@upeu.edu.pe',
             '54654654',
-            '12-12-15', 1)
+            '12-12-15')
         with self.client:
             response = self.client.get(f'/users/jugadores/{jugador.id}')
             data = json.loads(response.data.decode())
@@ -89,14 +89,15 @@ class TestJugadorService(BaseTestCase):
         existe."""
         with self.client:
             self.client.post(
-                '/crearjugador',
+                '/users/crearjugador',
                 data=json.dumps({
                     'nombre': 'estrella',
                     'apellido': 'barrientos',
                     'email': 'estrella@upeu.edu.pe',
                     'celular': 'celular',
                     'fechanacimiento': '12-15-18',
-                    'sexo': 1
+                    'usuario': 'estrella',
+                    'clave': '123'
                 }),
                 content_type='application/json',
             )
@@ -108,7 +109,8 @@ class TestJugadorService(BaseTestCase):
                     'email': 'estrella@upeu.edu.pe',
                     'celular': 'celular',
                     'fechanacimiento': '12-15-18',
-                    'sexo': 1
+                    'usuario': 'estrella',
+                    'clave': '123'
                 }),
                 content_type='application/json',
             )
@@ -159,8 +161,7 @@ class TestJugadorService(BaseTestCase):
              'apellido',
              'sol@upeu.edu.pe',
              '54654654',
-             '12-12-15',
-             1)
+             '12-12-15')
         with self.client:
             response = self.client.get('/users/jugadores')
             data = json.loads(response.data.decode())
@@ -170,4 +171,3 @@ class TestJugadorService(BaseTestCase):
             self.assertIn(
                 'sol@upeu.edu.pe', data['data']['jugadores'][0]['email'])
             self.assertIn('satisfactorio', data['estado'])
-

@@ -31,25 +31,14 @@ const AddJugador = (props) => {
                 <div class="form-group">
                   <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input id="usuario" type="text" class="form-control" name="usuario" placeholder="Usuario" required/>
+                  <input id="usuario" type="text" class="form-control" name="usuario" placeholder="Usuario" required onChange={props.handleChange}   value={props.usuario} />
                 </div>
                 </div>
                 
                 <div class="form-group">
                    <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input id="clave" type="password" class="form-control" name="clave" placeholder="Contraseña" required/>
-                </div>
-                </div>
-                <div class="form-group">
-                   <div class="input-group" >
-                  <input type="radio" id="femenino"
-                     name="sexo" value="1" checked/>
-                    <label  for="femenino">Mujer</label>
-
-                    <input type="radio" id="masculino"
-                     name="sexo" value="2"/>
-                    <label for="masculino">Hombre</label>
+                  <input id="clave" type="password" class="form-control" name="clave" placeholder="Contraseña" required onChange={props.handleChange}   value={props.clave} />
                 </div>
                 </div>
                

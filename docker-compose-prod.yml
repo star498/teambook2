@@ -35,3 +35,19 @@ services:
       - 80:80
     depends_on:
       - users
+      - cuentas
+
+  cuentas:
+    build:
+      context: ./services/cuentas
+      dockerfile: Dockerfile-prod
+    volumes:
+      - './services/cuentas:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - 3007:80
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
+    depends_on:
+      - users

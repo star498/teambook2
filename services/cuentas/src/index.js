@@ -15,7 +15,6 @@ class App  extends Component{
        email: '',
        celular: '',
        fechanacimiento: '',
-       sexo: '',
        usuario:'',
        clave:''
    };
@@ -43,15 +42,14 @@ class App  extends Component{
     email: this.state.email,
     celular: this.state.celular,
     fechanacimiento: this.state.fechanacimiento,
-    sexo:this.state.sexo,
     usuario: this.state.usuario,
     clave: this.state.clave
-  };
+    };
 
   axios.post(`${process.env.REACT_APP_USERS_SERVICE_URL}/users/crearjugador`, data)
   .then((res) => { 
   this.getJugadores();
-  this.setState({ nombre: '', apellido: '', email: '', celular:'' ,fechanacimiento: '', sexo: '', usuario: '', clave:''  });  
+  this.setState({ nombre: '', apellido: '', email: '', celular:'' ,fechanacimiento: '',  usuario: '', clave:''  });  
   })
   .catch((err) => { console.log(err); });
   };
@@ -61,9 +59,6 @@ handleChange(event) {
   obj[event.target.name] = event.target.value;
   this.setState(obj);
 };
-
-
- 
 
 
   render() {
@@ -80,7 +75,6 @@ handleChange(event) {
                       email={this.state.email}
                       celular= {this.state.celular}
                       fechanacimiento={this.state.fechanacimiento}
-                      sexo={this.state.sexo}
                       usuario={this.state.usuario}
                       clave={this.state.clave}
                       addJugador={this.addJugador}

@@ -55,15 +55,13 @@ class Participante(db.Model):
                  apellido,
                  email,
                  celular,
-                 fechanacimiento,
-                 sexo
+                 fechanacimiento
                  ):
         self.nombre = nombre
         self.apellido = apellido
         self.email = email
         self.celular = celular
         self.fechanacimiento = fechanacimiento
-        self.sexo = sexo
 
 
 class Usuario(db.Model):
