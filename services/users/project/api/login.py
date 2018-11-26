@@ -10,7 +10,7 @@ login_blueprint = Blueprint(
      static_url_path='', static_folder='./static')
 
 
-@login_blueprint.route('/login/ping', methods=['GET'])
+@login_blueprint.route('/users/ping', methods=['GET'])
 def ping_pong():
     return jsonify({
         'estado': 'satisfactorio',
@@ -18,12 +18,12 @@ def ping_pong():
     })
 
 
-@login_blueprint.route('/u', methods=['GET', 'POST'])
+@login_blueprint.route('/users/u', methods=['GET', 'POST'])
 def inicio():
     return render_template('index.html')
 
 
-@login_blueprint.route('/login', methods=['GET', 'POST'])
+@login_blueprint.route('/users/login', methods=['GET', 'POST'])
 def login():
 
     if request.method == 'POST':
@@ -32,7 +32,7 @@ def login():
     return render_template('principal.html', usuario=usuario)
 
 
-@login_blueprint.route('/crearjugador', methods=['GET', 'POST'])
+@login_blueprint.route('/users/crearjugador', methods=['GET', 'POST'])
 def crearjugador():
     post_data = request.get_json()
     response_object = {
@@ -47,17 +47,26 @@ def crearjugador():
     celular = post_data.get('celular')
     fechanacimiento = post_data.get('fechanacimiento')
     sexo = post_data.get('sexo')
+    usuario =  post_data.get('usuario')
+    clave =  post_data.get('clave')
 
     try:
         jugador = Participante.query.filter_by(email=email).first()
         if not jugador:
-            db.session.add(Participante(
-                 nombre=nombre,
-                 apellido=apellido,
-                 email=email,
-                 celular=celular,
-                 fechanacimiento=fechanacimiento,
-                 sexo=sexo))
+            jugadorcreate = Participante(
+             nombre=nombre,
+             apellido=apellido,
+             email=email,
+             celular=celular,
+             fechanacimiento=fechanacimiento,
+             sexo=sexo)
+            db.session.add(jugadorcreate)
+            db.session.commit()
+            idjugador = jugadorcreate.id
+            db.session.add(Usuario(
+                 usuario=usuario,
+                 clave=clave,
+                 idparticipante=idjugador))
             db.session.commit()
             response_object['estado'] = 'satisfactorio'
             response_object['mensaje'] = f'{email} ha sido agregado!'
@@ -70,7 +79,7 @@ def crearjugador():
         return jsonify(response_object), 400
 
 
-@login_blueprint.route('/jugadores/<jugador_id>', methods=['GET'])
+@login_blueprint.route('/users/jugadores/<jugador_id>', methods=['GET'])
 def get_single_jugador(jugador_id):
     """Obteniendo detalles de un unico usuario"""
     response_object = {
@@ -102,7 +111,7 @@ def get_single_jugador(jugador_id):
         return jsonify(response_object), 404
 
 
-@login_blueprint.route('/crearcuenta', methods=['GET', 'POST'])
+@login_blueprint.route('/users/crearcuenta', methods=['GET', 'POST'])
 def index():
     
     if request.method == 'POST':
@@ -111,7 +120,7 @@ def index():
         apellido = request.form['apellido']
         email = request.form['email']
         celular = request.form['celular']
-        fechanacimiento = str(request.form['fnacimiento'])
+        fechanacimiento = str(request.form['fechanacimiento'])
         sexo = int(request.form['sexo'])
         usuario = request.form['usuario']
         clave = request.form['clave']
@@ -138,7 +147,7 @@ def index():
          participantes=participantes)
 
 
-@login_blueprint.route('/jugadores', methods=['GET'])
+@login_blueprint.route('/users/jugadores', methods=['GET'])
 def get_all_jugadores():
     """Get all users"""
     response_object = {

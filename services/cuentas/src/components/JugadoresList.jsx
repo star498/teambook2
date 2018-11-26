@@ -6,32 +6,16 @@ const JugadoresList = (props) => {
       {
         props.jugadores.map((p) => {
           return (
-               <table >
-               <tr>
-                <td ROWSPAN="4">
-                {p.id}
-                </td>
-                <td>
-                {p.nombre} {p.apellido}
-                </td>
-                </tr>
-                <tr>
-                <td>
-                {p.celular}
-                </td>
-                </tr>
-               <tr>
-                <td>
-                {p.nivel}
-                </td>
-              </tr>
-               <tr>
-                <td>
-               {p.email}
-                </td>
-              </tr>
-                
-              </table> 
+               <div class="row">
+                   <div class="col-sm-6">
+                     <img src="images/perfil.png"  width="80" height="80" alt="author"/>
+                   </div>
+                   <div class="col-sm-6">
+                     <a  key={p.id}>{ p.nombre}</a>
+                     <div > <strong>{ p.email }</strong></div>
+                   </div>
+                   
+                 </div>
 
           )
         })

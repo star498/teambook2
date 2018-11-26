@@ -23,7 +23,7 @@ class TestJugadorService(BaseTestCase):
     """Prueba para el servicio jugador."""
     def test_jugador(self):
         """Asegurando que la ruta /ping se comporta correctamente."""
-        response = self.client.get('/login/ping')
+        response = self.client.get('/users/login/ping')
         data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 200)
         self.assertIn('pong!!!', data['mensaje'])
@@ -34,7 +34,7 @@ class TestJugadorService(BaseTestCase):
         datos."""
         with self.client:
             response = self.client.post(
-                '/crearjugador',
+                '/users/crearjugador',
                 data=json.dumps({
                     'nombre': 'estrella',
                     'apellido': 'barrientos',
@@ -58,7 +58,7 @@ class TestJugadorService(BaseTestCase):
         vacio."""
         with self.client:
             response = self.client.post(
-                '/crearjugador',
+                '/users/crearjugador',
                 data=json.dumps({}),
                 content_type='application/json',
             )
@@ -77,7 +77,7 @@ class TestJugadorService(BaseTestCase):
             '54654654',
             '12-12-15', 1)
         with self.client:
-            response = self.client.get(f'/jugadores/{jugador.id}')
+            response = self.client.get(f'/users/jugadores/{jugador.id}')
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 200)
             self.assertIn('sol', data['data']['nombre'])
@@ -101,7 +101,7 @@ class TestJugadorService(BaseTestCase):
                 content_type='application/json',
             )
             response = self.client.post(
-                '/crearjugador',
+                '/users/crearjugador',
                 data=json.dumps({
                     'nombre': 'estrella',
                     'apellido': 'barrientos',
@@ -121,7 +121,7 @@ class TestJugadorService(BaseTestCase):
     def test_single_jugador_no_id(self):
         """Asegurando de que se lanze un error si no se proporciona un id."""
         with self.client:
-            response = self.client.get('/jugadores/blash')
+            response = self.client.get('/users/jugadores/blash')
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 404)
             self.assertIn('jugador no existe', data['mensaje'])
@@ -130,7 +130,7 @@ class TestJugadorService(BaseTestCase):
     def test_single_jugador_incorrect_id(self):
         """Asegurando de que se lanze un error si el id no existe."""
         with self.client:
-            response = self.client.get('/jugadores/1')
+            response = self.client.get('/users/jugadores/1')
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 404)
             self.assertIn('jugador no existe', data['mensaje'])
@@ -143,7 +143,7 @@ class TestJugadorService(BaseTestCase):
         """
         with self.client:
             response = self.client.post(
-                '/crearjugador',
+                '/users/crearjugador',
                 data=json.dumps({'email': 'estrella@upeu.edu.pe'}),
                 content_type='application/json',
             )
@@ -162,7 +162,7 @@ class TestJugadorService(BaseTestCase):
              '12-12-15',
              1)
         with self.client:
-            response = self.client.get('/jugadores')
+            response = self.client.get('/users/jugadores')
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 200)
             self.assertEqual(len(data['data']['jugadores']), 1)

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AddJugador renders a snapshot properly 1`] = `
-<form>
+<form
+  onSubmit={[Function]}
+>
   <h3>
     <strong>
       Crear una cuenta
@@ -82,8 +84,8 @@ exports[`AddJugador renders a snapshot properly 1`] = `
       </span>
       <input
         class="form-control"
-        id="fnacimiento"
-        name="fnacimiento"
+        id="fechanacimiento"
+        name="fechanacimiento"
         placeholder="Nacimiento"
         required={true}
         type="Date"

@@ -17,7 +17,7 @@ const jugadores = [
     'estado': true
   },
   {
-    'nombre': 'estrella',
+  'nombre': 'estrella',
     'email': 'strella@gmail.com',
     'apellido': 'barrientos',
     'celular': '4356565',
@@ -26,14 +26,14 @@ const jugadores = [
     'sexo' : 1,
     'id': 2,
     'estado': true
-  },
+  }
 ];
  
 test('JugadoresList renders properly', () => {
   const wrapper = shallow(<JugadoresList jugadores={jugadores}/>);
-  const element = wrapper.find('h4');
+  const element = wrapper.find('strong');
   expect(element.length).toBe(2);
-  expect(element.get(0).props.children).toBe('estrella');
+  expect(element.get(0).props.children).toBe('strella@gmail.com');
 });
 test('JugadoresList renders a snapshot properly', () => {
   const tree = renderer.create(<JugadoresList jugadores={jugadores}/>).toJSON();

@@ -2,11 +2,69 @@
 
 exports[`JugadoresList renders a snapshot properly 1`] = `
 <div>
-  <h4>
-    estrella
-  </h4>
-  <h4>
-    estrella
-  </h4>
+  <div
+    class="row"
+  >
+    <div
+      class="col-sm-6"
+    >
+      <img
+        alt="author"
+        height="80"
+        src="images/perfil.png"
+        width="80"
+      />
+    </div>
+    <div
+      class="col-sm-6"
+    >
+      <a
+        class="h6 author-name"
+      >
+        estrella
+        barrientos
+      </a>
+      <div
+        class="birthday-date"
+      >
+         
+        <strong>
+          strella@gmail.com
+        </strong>
+      </div>
+    </div>
+  </div>
+  <div
+    class="row"
+  >
+    <div
+      class="col-sm-6"
+    >
+      <img
+        alt="author"
+        height="80"
+        src="images/perfil.png"
+        width="80"
+      />
+    </div>
+    <div
+      class="col-sm-6"
+    >
+      <a
+        class="h6 author-name"
+      >
+        estrella
+        barrientos
+      </a>
+      <div
+        class="birthday-date"
+      >
+         
+        <strong>
+          strella@gmail.com
+        </strong>
+      </div>
+    </div>
+  </div>
 </div>
 `;
